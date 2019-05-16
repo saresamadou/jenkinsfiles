@@ -1,17 +1,36 @@
 node {
     try{
-       stage('Build') {
-       sh 'make'
-       
-       }
-        stage('First stage') {
+        
+        def deploy(result) {
+            if(result == null || result == 'SUCCESS') {
+             echo 'Deploying ...'
+            }
+        }
+        
+        
+        
+        stage('Checkout source') {
             echo 'This stage will be executed first.'
         }
-        stage ('Second stage') {
+        stage ('Build stage') {
             echo 'Second stage'
         }
+        
+        stage ('Test stage') {
+            echo env
+        }
+        
+        stage('Deploy') {
+            deploy(currentBuild.result)
+        }
     }
-    finally{
-            echo 'I have my work here'
+    
+    catch(Exception ex) {
+        echo 'Exception happened' + ex.getStackTrace() 
+    }
+    
+    finally
+    {
+            echo 'End of the pipeline'
     } 
    }
