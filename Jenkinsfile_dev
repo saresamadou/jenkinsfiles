@@ -1,14 +1,6 @@
 node {
     try{
         
-        def deploy(result) {
-            if(result == null || result == 'SUCCESS') {
-             echo 'Deploying ...'
-            }
-        }
-        
-        
-        
         stage('Checkout source') {
             echo 'This stage will be executed first.'
         }
@@ -34,3 +26,9 @@ node {
             echo 'End of the pipeline'
     } 
    }
+
+     def deploy(result) {
+            if(result == null || result == 'SUCCESS') {
+             echo 'Deploying ...'
+            }
+        }
