@@ -1,0 +1,13 @@
+node {
+    try{
+        stage('First stage') {
+            echo 'This stage will be executed first.'
+        }
+        stage ('Second stage') {
+            echo 'Second stage'
+        }
+    }
+    finally{
+            echo 'I have my work here'
+    } 
+   }
