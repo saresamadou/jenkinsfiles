@@ -1,5 +1,9 @@
 node {
     try{
+       stage('Build') {
+       sh 'make'
+       
+       }
         stage('First stage') {
             echo 'This stage will be executed first.'
         }
