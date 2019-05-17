@@ -6,7 +6,8 @@ node {
         
         stage('Checkout source') {
            echo 'This stage will be executed first.'
-           checkout scm
+           def scmVars = checkout scm
+           scmVars.each{key, value -> echo "${key} : ${value}"}
         }
         stage ('Build stage') {
             echo 'Second stage'
@@ -31,8 +32,10 @@ node {
     } 
    }
 
-     def deploy(result) {
+     def deploy(result) 
+   {
             if(result == null || result == 'SUCCESS') {
              echo 'Deploying ...'
             }
-        }
+   }
+       
