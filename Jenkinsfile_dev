@@ -4,13 +4,13 @@ node {
         deleteDir()
         cleanWs()
         
-        stage('Checkout source') {
-           echo 'This stage will be executed first.'
-           def scmVars = checkout scm
-           scmVars.each{key, value -> echo "${key} : ${value}"}
+        stage('Checkout source...') {
+           echo 'Checkouting source'
+           checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '59f0f8ba-6afb-4a26-8718-8950d848ec59', url: 'https://gitlab.com/borutoboruto2/aaq.git']]])
         }
+        
         stage ('Build stage') {
-            echo 'Second stage'
+            echo 'Build stage'
         }
         
         stage ('Test stage') {
