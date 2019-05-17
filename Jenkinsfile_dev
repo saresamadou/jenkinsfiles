@@ -1,8 +1,12 @@
 node {
     try{
         
+        deleteDir()
+        cleanWs()
+        
         stage('Checkout source') {
-            echo 'This stage will be executed first.'
+           echo 'This stage will be executed first.'
+           checkout scm
         }
         stage ('Build stage') {
             echo 'Second stage'
